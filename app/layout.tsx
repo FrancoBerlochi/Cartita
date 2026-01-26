@@ -1,7 +1,8 @@
 import React from "react"
 import type { Metadata, Viewport } from "next"
 import { Manrope } from "next/font/google"
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/app/providers/theme-provider";
+import { AuthProvider } from "./providers/AuthProvider";
 import "./globals.css"
 
 const manrope = Manrope({ subsets: ["latin"] })
@@ -48,7 +49,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap"
@@ -62,7 +63,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <AuthProvider>
+            {children}
+          </AuthProvider>
         </ThemeProvider>
         {/* <Analytics /> */}
       </body>

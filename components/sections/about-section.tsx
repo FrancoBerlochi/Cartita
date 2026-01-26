@@ -5,8 +5,8 @@ export function AboutSection() {
       id="nosotros"
     >
       <div className="max-w-[800px] mx-auto text-center">
-        <h2 className="text-primary font-bold text-sm tracking-widest uppercase mb-4">
-          Nuestra Misión
+        <h2 className="text-3xl md:text-5xl font-black tracking-tight pb-12">
+          Nuestra <span className="text-primary dark:text-[#ee8c2b]">Misión</span>
         </h2>
         <h3 className="text-3xl md:text-4xl font-black mb-8 leading-tight text-balance">
           Impulsamos a los <span className="text-primary dark:text-[#ee8c2b]">restaurantes locales</span> a prosperar en un mundo online.

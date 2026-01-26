@@ -1,5 +1,6 @@
 import { Logo } from "@/components/icons/logo"
 import { ThemeToggle } from "../theme-toggle"
+import Link from "next/link"
 
 const navLinks = [
     { label: "Funciones", href: "#funciones" },
@@ -37,12 +38,12 @@ export function Header() {
             </a>
           </nav>
           <div className="flex gap-3">
-            <button className="cursor-pointer bg-primary dark:bg-[#ee8c2b] text-white rounded-full h-10 px-6 text-sm font-bold hover:opacity-90 transition-opacity">
+            <Link href="/admin" className="flex items-center cursor-pointer bg-primary dark:bg-[#ee8c2b] text-white rounded-full h-10 px-6 text-sm font-bold hover:opacity-90 transition-opacity">
               Comenzar
-            </button>
-            <button className="cursor-pointer bg-[#f0f2f4] dark:bg-gray-800 text-[#111418] dark:text-white rounded-full h-10 px-6 text-sm font-bold hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+            </Link>
+            <Link href="/login" className="flex items-center h-10 cursor-pointer bg-[#f0f2f4] dark:bg-gray-800 text-[#111418] dark:text-white rounded-full px-6 text-sm font-bold hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
               Iniciar Sesión
-            </button>
+            </Link>
         <ThemeToggle />
           </div>
         </div>

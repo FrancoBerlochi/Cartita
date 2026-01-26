@@ -108,12 +108,14 @@ function PhoneMockup() {
       w-[75%]
       aspect-[9/19]
       max-h-[80vh]
-      bg-[#0b1220]
+      bg-[hsl(220,49%,15%)]
+      dark:bg-[hsl(220,49%,8%)]
       rounded-[2.5rem]
       border-[0.75rem]
       border-neutral-900
       shadow-2xl
       overflow-hidden
+      mx-auto
     ">
 
       {/* Island */}

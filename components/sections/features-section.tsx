@@ -23,7 +23,7 @@ export function FeaturesSection() {
   return (
     <section className="py-24 px-4 md:px-20 lg:px-40" id="funciones">
       <div className="max-w-[1200px] mx-auto">
-        <div className="flex flex-col gap-4 mb-16">
+        <div className="flex flex-col gap-4 mb-16 items-center pb-12">
           <h2 className="text-3xl md:text-5xl font-black tracking-tight">
             Lo Que Ofrecemos
           </h2>
