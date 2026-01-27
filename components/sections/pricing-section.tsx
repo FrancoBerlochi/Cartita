@@ -6,7 +6,6 @@ const basicFeatures = [
 ]
 
 const proFeatures = [
-  { text: "3 Perfiles y Menús", included: true },
   { text: "Dominio Personalizado (cartita.tunombre.com)", included: true },
   { text: "Contacto via WhatsApp", included: true },
   { text: "Código QR Dinámico y descarga de PDF", included: true },

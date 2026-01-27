@@ -24,7 +24,7 @@ export function Header() {
 
   return (
     <header className="fixed top-0 w-full z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-[#f0f2f4] dark:border-gray-800 px-4 md:px-20 lg:px-40 py-3">
-      <div className="max-w-[1200px] mx-auto flex items-center justify-between">
+      <div className="w-full mx-auto flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Logo className="size-8 text-primary dark:text-[#ee8c2b]" />
           <h2 className="text-xl font-extrabold tracking-tight">Cartita</h2>
