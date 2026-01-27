@@ -1,18 +1,28 @@
-import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore"
+import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore"
 import { db } from "./firebase"
 
-export async function createRestaurant(ownerId: string, name: string) {
+export async function createRestaurant(
+  ownerId: string,
+  data: {
+    name: string
+    businessType: string | null
+    city: string | null
+  }
+) {
   const ref = doc(db, "restaurants", ownerId)
 
   await setDoc(ref, {
     ownerId,
-    name,
+    name: data.name,
+    businessType: data.businessType,
+    city: data.city,
     createdAt: serverTimestamp(),
-    onboardingStep: "BASIC_INFO",
+    onboardingStep: "MENU",
     plan: null,
     isActive: false,
   })
 }
+
 
 export async function getRestaurantByOwner(ownerId: string) {
   const ref = doc(db, "restaurants", ownerId)

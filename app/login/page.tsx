@@ -1,21 +1,16 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { onAuthStateChanged } from "firebase/auth"
-import { getRestaurantByOwner } from "@/firebase/restaurants"
-import { auth } from "@/firebase/firebase"
+import { postLoginRedirect } from "@/lib/postLoginRedirect"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Eye, EyeOff, Utensils, AlertCircle } from "lucide-react"
 import { loginWithEmail, loginWithGoogle } from "@/firebase/auth"
-import { createUserIfNotExists } from "@/firebase/users"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
-import { ThemeToggle } from "@/components/theme-toggle"
 import HeaderLoginRegister from "@/components/layout/header-login-register"
-import { RedirectType } from "next/navigation"
 
 export default function Login() {
   const [email, setEmail] = useState("")
@@ -27,57 +22,42 @@ export default function Login() {
   const router = useRouter()
 
   const handleEmailLogin = async () => {
-    setError(null)
-    setIsLoading(true)
-    try {
-      const res = await loginWithGoogle()
-await createUserIfNotExists(res.user)
+  setError(null)
+  setIsLoading(true)
 
-const restaurant = await getRestaurantByOwner(res.user.uid)
-
-if (!restaurant) {
-  router.replace("/onboarding")
-} else {
-  router.replace("/admin")
+  try {
+    const res = await loginWithEmail(email, password)
+    await postLoginRedirect(res.user, router)
+  } catch (err) {
+    setError((err as Error).message)
+    setIsLoading(false)
+  }
 }
 
-    } catch (err) {
-      setError((err as Error).message)
-    } finally {
-      setIsLoading(false)
-    }
+const handleGoogleLogin = async () => {
+  setError(null)
+  setIsLoading(true)
+
+  try {
+    const res = await loginWithGoogle()
+    await postLoginRedirect(res.user, router)
+  } catch (err) {
+    setError((err as Error).message)
+    setIsLoading(false)
   }
-
-  const handleGoogleLogin = async () => {
-    setError(null)
-    try {
-      const res = await loginWithGoogle()
-await createUserIfNotExists(res.user)
-
-const restaurant = await getRestaurantByOwner(res.user.uid)
-
-if (!restaurant) {
-  router.replace("/onboarding")
-} else {
-  router.replace("/admin")
 }
 
-    } catch (err) {
-      setError((err as Error).message)
-    } finally {
-      setIsLoading(false)
-    }
-  }
 
-  useEffect(() => {
-  const unsubscribe = onAuthStateChanged(auth, (user) => {
-    if (user) {
-      router.replace("/")
-    }
-  })
 
-  return () => unsubscribe()
-}, [router])
+//   useEffect(() => {
+//   const unsubscribe = onAuthStateChanged(auth, (user) => {
+//     if (user) {
+//       router.replace("/admin")
+//     }
+//   })
+
+//   return () => unsubscribe()
+// }, [router])
 
 
   return (

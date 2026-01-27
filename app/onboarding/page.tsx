@@ -1,11 +1,46 @@
+"use client"
+
+import { useEffect } from "react"
+import { useRouter } from "next/navigation"
+import { getRestaurantByOwner } from "@/firebase/restaurants"
+import { useAuth } from "@/app/providers/AuthProvider"
 
 export default function OnboardingPage() {
-    return(
-        <div className="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white transition-colors duration-300">
-            <main className="pt-24 min-h-screen flex flex-col justify-center items-center">
-                <h1 className="text-4xl font-bold mb-8">Página de Onboarding</h1>
-                <p className="text-lg">Aquí puedes completar el proceso de incorporación de tu restaurante.</p>
-            </main>
-        </div>
+  const router = useRouter()
+  const { user, loading } = useAuth()
+
+  useEffect(() => {
+    if (loading) return
+    if (!user) {
+      router.replace("/login")
+      return
+    }
+
+    getRestaurantByOwner(user.uid).then((restaurant) => {
+      if (!restaurant) {
+        router.replace("/onboarding/restaurant")
+        return
+      }
+
+      switch (restaurant.onboardingStep) {
+        case "RESTAURANT":
+          router.replace("/onboarding/restaurant")
+          break
+        case "MENU":
+          router.replace("/onboarding/menu")
+          break
+        case "DONE":
+          router.replace("/admin")
+          break
+        default:
+          router.replace("/onboarding/restaurant")
+      }
+    })
+  }, [user, loading, router])
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <p className="text-lg">Redirigiendo...</p>
+    </div>
     )
-};
+}

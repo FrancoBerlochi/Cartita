@@ -3,7 +3,7 @@
 import { useAuth } from "@/app/providers/AuthProvider";
 import { redirect } from "next/navigation";
 
-export default function AdminLayout({
+export default function OnboardingLayout({
   children,
 }: {
   children: React.ReactNode;
