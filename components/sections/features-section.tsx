@@ -51,7 +51,7 @@ function FeatureCard({
   description: string
 }) {
   return (
-    <div className="flex flex-col gap-6 p-8 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 hover:shadow-xl transition-shadow group">
+    <div className="flex flex-col gap-6 p-8 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 hover:shadow-xl transition-shadow group">
       <div className="size-14 rounded-full bg-primary/10 dark:bg-[#ee8c2b] flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
         <span className="material-symbols-outlined text-3xl dark:text-gray-800">{icon}</span>
       </div>

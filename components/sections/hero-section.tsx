@@ -210,7 +210,7 @@ function PhoneMockup() {
                   hover:bg-orange-500
                   hover:text-white
                   transition
-                  text-gray-600
+                  text-gray-400
                 "
                 href={social.href}
                 target="_blank"

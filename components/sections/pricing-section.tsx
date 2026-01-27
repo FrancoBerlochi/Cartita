@@ -67,7 +67,7 @@ function PricingCard({
 }) {
   return (
     <div
-      className={`bg-white dark:bg-gray-900 p-10 rounded-lg flex flex-col items-center relative ${
+      className={`bg-white dark:bg-gray-900 p-10 rounded-2xl flex flex-col items-center relative ${
         highlighted
           ? "shadow-2xl border-2 border-primary dark:border-[#ee8c2b]"
           : "shadow-sm border border-gray-200 dark:border-gray-800"
