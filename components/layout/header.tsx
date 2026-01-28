@@ -16,7 +16,7 @@ const navNames = [
 ];
 export function Header() {
   const [user, setUser] = useState<User | null>(null)
-  const [menu, setMenu] = useState(true)
+  const [menu, setMenu] = useState(false)
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser)
