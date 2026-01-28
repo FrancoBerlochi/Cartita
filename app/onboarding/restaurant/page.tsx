@@ -18,6 +18,9 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { useRouter } from "next/navigation";
 import { createRestaurant } from "@/firebase/restaurants";
 import { useAuth } from "@/app/providers/AuthProvider";
+import OnboardingHeader from "@/components/onboarding/onboarding-header";
+import { OnboardingFooter } from "@/components/onboarding/onboarding-footer";
+import { OnboardingProgress } from "@/components/onboarding/onboarding-progress";
 
 const BUSINESS_TYPES = [
   { value: "restaurante", label: "Restaurante" },
@@ -88,62 +91,10 @@ export default function Restaurant() {
 
   return (
     <div className="min-h-screen bg-stone-50 dark:bg-stone-950">
-      {/* Header */}
-      <header className="border-b border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-900">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-linear-to-br from-orange-500 to-orange-600">
-              <span className="text-lg font-bold text-white dark:text-black">
-                C
-              </span>
-            </div>
-            <span className="text-lg font-semibold text-stone-900 dark:text-stone-100">
-              cartita
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-stone-600 dark:text-stone-300"
-            >
-              <Bell className="h-5 w-5" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-stone-600 dark:text-stone-300"
-            >
-              <User className="h-5 w-5" />
-            </Button>
-            <ThemeToggle />
-            <div className="ml-2 h-9 w-9 rounded-full border-2 border-orange-200 bg-orange-50 dark:bg-stone-800 dark:border-stone-700" />
-          </div>
-        </div>
-      </header>
-
       {/* Main Content */}
-      <main className="mx-auto max-w-2xl px-4 py-8">
+      <main className="mx-auto max-w-3xl px-4 py-8">
         {/* Progress Section */}
-        <div className="mb-2">
-          <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-stone-900 dark:text-stone-100">
-              Paso 1 de 3: Información del Negocio
-            </span>
-            <span className="text-sm font-medium text-orange-500 dark:text-orange-400">
-              33%
-            </span>
-          </div>
-          <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-stone-200">
-            <div
-              className="h-full rounded-full bg-linear-to-r from-orange-500 to-orange-400 transition-all duration-300"
-              style={{ width: "33%" }}
-            />
-          </div>
-          <p className="mt-2 text-sm text-stone-500 dark:text-stone-300">
-            Siguiente: Configuración del Menú
-          </p>
-        </div>
+        <OnboardingProgress currentStep={1} totalSteps={4} stepTitle="Creá tu restaurante" />
 
         {/* Form Header */}
         <div className="mt-8 text-center">
@@ -256,17 +207,13 @@ export default function Restaurant() {
           </div>
         </form>
 
-        {/* Help Link */}
-        <div className="mt-8 flex items-center justify-center gap-2 text-sm text-stone-500">
-          <HelpCircle className="h-4 w-4" />
-          <span>¿Necesitás ayuda?</span>
-          <a
-            href="#"
-            className="font-medium text-orange-500 hover:text-orange-600 hover:underline"
-          >
-            Contactar Soporte
-          </a>
-        </div>
+        {/* Footer */}
+        <OnboardingFooter
+          onContinue={() => handleSubmit}
+          continueLabel="Continuar con el Menú"
+          showBack={false}
+          showSkip={false}
+        />
       </main>
     </div>
   );
