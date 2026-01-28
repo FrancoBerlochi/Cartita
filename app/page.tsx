@@ -7,7 +7,7 @@ import { PricingSection } from "@/components/sections/pricing-section"
 
 export default function HomePage() {
   return (
-    <div className="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white transition-colors duration-300">
+    <div className="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white transition-colors duration-300 overflow-hidden">
       <Header />
       <main className="pt-24">
         <HeroSection />

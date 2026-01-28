@@ -1,12 +1,18 @@
 import React from "react"
 import type { Metadata, Viewport } from "next"
-import { Manrope } from "next/font/google"
+import { Manrope, Outfit, Bebas_Neue, Inter } from "next/font/google"
 import { ThemeProvider } from "@/app/providers/theme-provider";
 import { AuthProvider } from "./providers/AuthProvider";
 import { AlertProvider } from "./context/alert-context";
 import "./globals.css"
 
-const manrope = Manrope({ subsets: ["latin"] })
+const manrope = Manrope({ subsets: ["latin"] });
+const outfit = Outfit({ subsets: ["latin"] });
+const bebas_neue = Bebas_Neue({
+  subsets: ["latin"],
+  weight: "400",
+});
+const inter = Inter({subsets:["latin"]})
 
 export const metadata: Metadata = {
   title: "Cartita | Presencia Digital para Restaurantes",
@@ -57,7 +63,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={`${manrope.className} antialiased`}>
+      <body className={`${inter.className} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
