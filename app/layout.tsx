@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next"
 import { Manrope } from "next/font/google"
 import { ThemeProvider } from "@/app/providers/theme-provider";
 import { AuthProvider } from "./providers/AuthProvider";
+import { AlertProvider } from "./context/alert-context";
 import "./globals.css"
 
 const manrope = Manrope({ subsets: ["latin"] })
@@ -63,9 +64,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AuthProvider>
-            {children}
-          </AuthProvider>
+          <AlertProvider>
+            <AuthProvider>
+              {children}
+            </AuthProvider>
+          </AlertProvider>
+          
         </ThemeProvider>
         {/* <Analytics /> */}
       </body>

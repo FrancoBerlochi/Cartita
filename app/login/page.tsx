@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useAlert } from "../context/alert-context"
+import { useState, useEffect, useContext } from "react"
 import { postLoginRedirect } from "@/lib/postLoginRedirect"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
@@ -18,8 +19,9 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false)
   const [keepLoggedIn, setKeepLoggedIn] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter()
+  const { showAlert } = useAlert()
 
   const handleEmailLogin = async () => {
   setError(null)
@@ -30,6 +32,7 @@ export default function Login() {
     await postLoginRedirect(res.user, router)
   } catch (err) {
     setError((err as Error).message)
+    showAlert("ha ocurrido un error, revisa tus credenciales", "error")
     setIsLoading(false)
   }
 }
@@ -88,14 +91,14 @@ const handleGoogleLogin = async () => {
           </div>
 
           <div className="space-y-5">
-            {error && (
+            {/* {error && (
               <div className="flex items-start gap-3 p-4 bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-900 rounded-xl">
                 <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400 mt-0.5" />
                 <p className="text-sm text-red-700 dark:text-red-300">
                   {"Ha ocurrido un error, por favor intentá nuevamente."}
                 </p>
               </div>
-            )}
+            )} */}
 
             {/* Email */}
             <div className="space-y-2">
