@@ -1,89 +1,133 @@
 import {
   collection,
   getDocs,
-  doc,
+  query,
   addDoc,
+  where,
+  writeBatch,
+  serverTimestamp,
+  doc
 } from "firebase/firestore"
 import { db } from "@/firebase/firebase"
 import { MenuCategory } from "@/types/menu"
-import { serverTimestamp } from "firebase/firestore"
+const normalize = (name: string) =>
+  name.trim().toLowerCase()
 
-export async function getMenuCategories(
-  ownerId: string,
-): Promise<MenuCategory[]> {
-  const categoriesRef = collection(
-    db,
-    "restaurants",
-    ownerId,
-    "menuCategories",
+const DEFAULT_CATEGORIES = [
+  "Entradas",
+  "Platos Principales",
+  "Guarniciones",
+  "Bebidas",
+  "Postres",
+]
+
+export async function seedDefaultCategories(ownerId: string) {
+  const q = query(
+    collection(db, "menuCategories"),
+    where("ownerId", "==", ownerId),
   )
 
-  const snapshot = await getDocs(categoriesRef)
+  const snap = await getDocs(q)
+  if (!snap.empty) return // 👈 evita duplicados
 
-  const categories: MenuCategory[] = []
+  const batch = writeBatch(db)
 
-  for (const docSnap of snapshot.docs) {
-    const data = docSnap.data()
-
-    const itemsSnap = await getDocs(
-      collection(
-        db,
-        "restaurants",
-        ownerId,
-        "menuCategories",
-        docSnap.id,
-        "items",
-      ),
-    )
-
-    const items = itemsSnap.docs.map((item) => ({
-      id: item.id,
-      name: item.data().name,
-      price: item.data().price ?? null,
-      noPrice: item.data().noPrice,
-    }))
-
-    categories.push({
-      id: docSnap.id,
-      name: data.name,
-      items,
+  DEFAULT_CATEGORIES.forEach(name => {
+    const ref = doc(collection(db, "menuCategories"))
+    batch.set(ref, {
+      ownerId,
+      name,
+      nameNormalized: normalize(name),
+      createdAt: serverTimestamp(),
     })
-  }
+  })
+
+  await batch.commit()
+}
+
+
+
+export async function getMenuCategories(ownerId: string) {
+  const q = query(
+    collection(db, "menuCategories"),
+    where("ownerId", "==", ownerId),
+  )
+
+  const snap = await getDocs(q)
+
+  const categories = await Promise.all(
+    snap.docs.map(async (docSnap) => {
+      const itemsSnap = await getDocs(
+        query(
+          collection(db, "menuItems"),
+          where("categoryId", "==", docSnap.id),
+        ),
+      )
+
+      return {
+        id: docSnap.id,
+        name: docSnap.data().name,
+        items: itemsSnap.docs.map((i) => ({
+          id: i.id,
+          ...i.data(),
+        })),
+      }
+    }),
+  )
 
   return categories
 }
 
+
+
+
 export async function createMenuCategory(
   ownerId: string,
-  category: {
-    name: string
-    items: {
-      name: string
-      price: number | null
-      noPrice: boolean
-    }[]
-  },
+  name: string,
 ) {
-  const categoryRef = await addDoc(
-    collection(db, "restaurants", ownerId, "menuCategories"),
-    {
-      name: category.name,
-      createdAt: serverTimestamp(),
-    },
+  const normalized = normalize(name)
+
+  const q = query(
+    collection(db, "menuCategories"),
+    where("ownerId", "==", ownerId),
+    where("nameNormalized", "==", normalized),
   )
 
-  for (const item of category.items) {
-    await addDoc(
-      collection(
-        db,
-        "restaurants",
-        ownerId,
-        "menuCategories",
-        categoryRef.id,
-        "items",
-      ),
-      item,
-    )
+  const exists = await getDocs(q)
+  if (!exists.empty) {
+    throw new Error("CATEGORY_EXISTS")
   }
+
+  return await addDoc(collection(db, "menuCategories"), {
+    ownerId,
+    name,
+    nameNormalized: normalized,
+    createdAt: serverTimestamp(),
+  })
+}
+
+
+export async function addItemsToCategory(
+  ownerId: string,
+  categoryId: string,
+  items: {
+    name: string
+    price: number | null
+    noPrice: boolean
+  }[],
+) {
+  const batch = writeBatch(db)
+
+  items.forEach((item) => {
+    const ref = doc(collection(db, "menuItems"))
+    batch.set(ref, {
+      ownerId,
+      categoryId,
+      ...item,
+      createdAt: serverTimestamp(),
+    })
+  })
+
+  await batch.commit()
 }
 
