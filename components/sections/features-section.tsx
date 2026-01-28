@@ -27,7 +27,7 @@ export function FeaturesSection() {
           <h2 className="text-3xl md:text-5xl font-black tracking-tight">
             Lo Que Ofrecemos
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400">
+          <p className="text-lg text-center text-gray-600 dark:text-gray-400">
             Todo lo que necesitas para conectar digitalmente con tus clientes.
           </p>
         </div>
