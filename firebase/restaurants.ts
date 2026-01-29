@@ -1,4 +1,4 @@
-import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore"
+import { doc, setDoc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore"
 import { db } from "./firebase"
 
 export async function createRestaurant(
@@ -29,4 +29,17 @@ export async function getRestaurantByOwner(ownerId: string) {
   const snap = await getDoc(ref)
 
   return snap.exists() ? snap.data() : null
+}
+
+export async function updateRestaurantPlan(
+  ownerId: string,
+  plan: "BASIC" | "PRO"
+) {
+  const ref = doc(db, "restaurants", ownerId)
+
+  await updateDoc(ref, {
+    plan,
+    onboardingStep: "PLAN",
+    planSelectedAt: serverTimestamp(),
+  })
 }

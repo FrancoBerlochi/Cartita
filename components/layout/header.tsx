@@ -49,9 +49,9 @@ export function Header() {
             height="32"
             fill="none"
             stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             className="lucide lucide-menu-icon lucide-menu"
             viewBox="0 0 24 24"
           >
@@ -82,9 +82,9 @@ export function Header() {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 className="lucide lucide-menu-icon lucide-menu"
               >
                 <path d="M4 5h16" />

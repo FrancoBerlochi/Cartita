@@ -14,11 +14,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { useRouter } from "next/navigation";
 import { createRestaurant } from "@/firebase/restaurants";
 import { useAuth } from "@/app/providers/AuthProvider";
-import OnboardingHeader from "@/components/onboarding/onboarding-header";
 import { OnboardingFooter } from "@/components/onboarding/onboarding-footer";
 import { OnboardingProgress } from "@/components/onboarding/onboarding-progress";
 

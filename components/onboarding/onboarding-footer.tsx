@@ -10,6 +10,7 @@ interface OnboardingFooterProps {
   onSkip?: () => void
   continueLabel?: string
   onContinue?: () => void
+  disabled?: boolean
   showBack?: boolean
   showSkip?: boolean
 }
@@ -21,6 +22,7 @@ export function OnboardingFooter({
   onSkip,
   continueLabel = "Continuar",
   onContinue,
+  disabled = false,
   showBack = true,
   showSkip = true,
 }: OnboardingFooterProps) {
@@ -45,10 +47,11 @@ export function OnboardingFooter({
         )}
         <Button
           onClick={onContinue}
+          disabled={disabled}
           className="bg-orange-500 hover:bg-orange-600 text-white px-6 gap-2"
         >
           {continueLabel}
-          <ArrowRight className="w-4 h-4" />
+          <ArrowRight className="w-4 h-4" /> 
         </Button>
       </div>
     </div>

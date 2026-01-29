@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import { MapPin, Plus, Trash2, ListFilter, Info } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 import { PhoneMockup } from "@/components/onboarding/phone-mockup"
 import { OnboardingProgress } from "@/components/onboarding/onboarding-progress"
@@ -30,6 +31,7 @@ type DraftItem = {
 
 export default function OnboardingMenu() {
   const { user } = useAuth()
+  const router = useRouter()
 
   const [restaurant, setRestaurant] = useState<any>(null)
   const [categories, setCategories] = useState<MenuCategory[]>([])
@@ -119,6 +121,10 @@ useEffect(() => {
 
     setDraftItems([])
     setNombreNuevaCategoria("")
+  }
+
+  const handleContinue = () => {
+    router.replace("/onboarding/plan");
   }
 
   /* ---------------- UI ---------------- */
@@ -317,9 +323,9 @@ useEffect(() => {
 
       <OnboardingFooter
         backLabel="Volver a Información del Negocio"
-        onBack={() => {}}
+        onBack={() => router.back()}
         showSkip={false}
-        onContinue={() => {}}
+        onContinue={() => {handleContinue()}}
       />
     </>
   )
