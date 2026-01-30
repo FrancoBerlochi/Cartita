@@ -27,13 +27,13 @@ interface ProfileProps {
 
 export default function Profile({ name, description }: ProfileProps) {
   return (
-    <section className="flex items-center w-screen justify-center flex-col h-[90%] max-md:h-full bg-white py-8">
+    <section className="flex items-center w-screen justify-center flex-col h-[90%] max-md:h-dvh bg-white py-8">
       <Image
         src="/next.svg"
         alt="pepe"
         width={500}
         height={500}
-        className="max-md:w-[33vw] max-md:h-[33vw] h-50 w-50 p-4 max-md:mt-6 mb-4 rounded-full border-white border-3 shadow-[#aaa] shadow-sm"
+        className="max-md:w-[44vw] max-md:h-[44vw] h-50 w-50 p-4 max-md:mt-6 mb-4 rounded-full border-white border-3 shadow-[#aaa] shadow-sm"
       />
       <h1 className="text-5xl max-md:text-2xl text-black font-semibold mt-2">
         {name}
