@@ -27,7 +27,7 @@ interface ProfileProps {
 
 export default function Profile({ name, description }: ProfileProps) {
   return (
-    <section className="flex items-center w-screen justify-center flex-col h-[90%] max-md:h-dvh bg-white py-8">
+    <section className="flex items-center w-screen justify-center flex-col h-[90%] max-md:h-full bg-white py-8">
       <Image
         src="/next.svg"
         alt="pepe"
