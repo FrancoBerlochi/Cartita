@@ -2,6 +2,7 @@
 
 import { Instagram, Facebook } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
 
 const socialLinks = [
   { label: "Instagram", href: "https://instagram.com/cartita" },
@@ -42,9 +43,12 @@ export function HeroSection() {
               <button className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-8 py-4 font-bold transition hover:scale-105">
                 Prueba Gratis
               </button>
-              <button className="bg-white/10 border border-white/20 text-white rounded-full px-8 py-4 font-bold hover:bg-white/20 transition">
+              <Link
+                href="/demo"
+                className="bg-white/10 border border-white/20 text-white rounded-full px-8 py-4 font-bold hover:bg-white/20 transition"
+              >
                 Ver Demo
-              </button>
+              </Link>
             </div>
           </div>
 

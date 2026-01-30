@@ -169,7 +169,7 @@ useEffect(() => {
                 <button
                   key={cat.id}
                   onClick={() => setCategoriaActiva(cat.id)}
-                  className={`text-sm font-medium ${
+                  className={`text-sm font-medium cursor-pointer ${
                     categoriaActiva === cat.id
                       ? "text-orange-600"
                       : "text-stone-400"

@@ -95,15 +95,15 @@ if (!restaurant) {
         </div>
 
         <Card className="relative z-10 w-full max-w-6xl p-8 md:p-12 rounded-3xl shadow-xl bg-card">
-  {showAlert && (
-  <div className="p-4 rounded-xl bg-red-50 text-red-700 dark:bg-red-900 dark:text-red-100 text-sm border border-red-200 dark:border-red-800 mb-6">
-    {"Ha ocurrido un error, por favor intentá nuevamente."}
-  </div>
-)}
+          {showAlert && (
+            <div className="p-4 rounded-xl bg-red-50 text-red-700 dark:bg-red-900 dark:text-red-100 text-sm border border-red-200 dark:border-red-800 mb-6">
+              {"Ha ocurrido un error, por favor intentá nuevamente."}
+            </div>
+          )}
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-md:grid-cols-1">
             {/* FORM */}
-            <div className="space-y-6">
+            <div className="space-y-6 w-full">
               <div>
                 <h1 className="text-3xl font-bold mb-2">
                   Creá el perfil de tu restaurante
@@ -123,7 +123,7 @@ if (!restaurant) {
                       placeholder="Ej: Pizzería Don Pepe"
                       value={businessName}
                       onChange={(e) => setBusinessName(e.target.value)}
-                      className="pl-12 h-14 rounded-xl focus-visible:ring-[#ff6900]"
+                      className="pl-12 h-14 rounded-xl  max-md:w-full focus-visible:ring-[#ff6900]"
                     />
                   </div>
                 </div>
@@ -137,7 +137,7 @@ if (!restaurant) {
                       placeholder="contacto@restaurante.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="pl-12 h-14 rounded-xl focus-visible:ring-[#ff6900]"
+                      className="pl-12 h-14 rounded-xl  max-md:w-full focus-visible:ring-[#ff6900]"
                     />
                   </div>
                 </div>
@@ -152,22 +152,21 @@ if (!restaurant) {
                       placeholder="Mínimo 6 caracteres"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="pl-12 h-14 rounded-xl focus-visible:ring-[#ff6900]"
+                      className="pl-12 h-14 rounded-xl  max-md:w-full focus-visible:ring-[#ff6900]"
                     />
                   </div>
                 </div>
 
                 <Button
-  onClick={handleSignup}
-  disabled={isLoading}
-  className="w-full h-14 rounded-xl bg-[#ff6900] hover:bg-[#ff6900]/90 text-white font-semibold shadow-lg"
->
-  {isLoading ? "Creando perfil..." : "Crear mi perfil"}
-  {!isLoading && <ArrowRight className="ml-2 w-5 h-5" />}
-</Button>
+                  onClick={handleSignup}
+                  disabled={isLoading}
+                  className="w-full max-md:w-full h-14 rounded-xl max-md:ml-auto  bg-[#ff6900] hover:bg-[#ff6900]/90 text-white font-semibold shadow-lg"
+                >
+                  {isLoading ? "Creando perfil..." : "Crear mi perfil"}
+                  {!isLoading && <ArrowRight className="ml-2 w-5 h-5" />}
+                </Button>
 
-
-                <p className="text-center text-sm text-muted-foreground">
+                <p className="text-center max-md:mr-12 text-sm text-muted-foreground">
                   ¿Ya tenés cuenta?{" "}
                   <Link
                     href="/login"
@@ -180,8 +179,8 @@ if (!restaurant) {
             </div>
 
             {/* MOCKUP */}
-            <div className="flex justify-center">
-              <div className="w-80 md:w-96 rounded-[2.8rem] border-4 border-[#ff6900]/20 shadow-2xl bg-card p-3">
+            <div className="flex justify-center ">
+              <div className="w-80 md:w-96 max-md: rounded-[2.8rem] border-4 border-[#ff6900]/20 shadow-2xl bg-card p-3">
                 <div
                   className="relative rounded-[2.2rem] overflow-hidden min-h-[540px] bg-cover bg-center"
                   style={{
@@ -236,5 +235,5 @@ if (!restaurant) {
         </p>
       </footer>
     </div>
-  )
+  );
 }
