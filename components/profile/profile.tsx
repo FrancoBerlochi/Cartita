@@ -27,13 +27,13 @@ interface ProfileProps {
 
 export default function Profile({ name, description }: ProfileProps) {
   return (
-    <section className="flex items-center w-screen justify-center flex-col h-[90%] max-md:h-full bg-white">
+    <section className="flex items-center w-screen justify-center flex-col h-[90%] max-md:h-full bg-white py-8">
       <Image
         src="/next.svg"
         alt="pepe"
         width={500}
         height={500}
-        className="w-36 h-36 p-4 max-md:mt-6 mb-4 rounded-full border-white border-3 shadow-[#aaa] shadow-sm"
+        className="w-[40vw] h-[40vw] p-4 max-md:mt-6 mb-4 rounded-full border-white border-3 shadow-[#aaa] shadow-sm"
       />
       <h1 className="text-5xl max-md:text-2xl text-black font-semibold mt-2">
         {name}
@@ -49,7 +49,7 @@ export default function Profile({ name, description }: ProfileProps) {
           >
             <Link
               href={b.href}
-              className=" bg-[hsl(25,100%,56%)] w-full px-5 py-4 max-md:py-3 rounded-full shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+              className=" bg-[hsl(25,100%,56%)] font-semibold w-full px-5 py-4 max-md:py-3 rounded-full shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]"
             >
               {b.name}
             </Link>
@@ -76,7 +76,7 @@ export default function Profile({ name, description }: ProfileProps) {
           <MapPin className=""></MapPin>
         </Link>
       </ul>
-      <Link href="/" className="text-gray-600 underline text-[12px] mt-20">
+      <Link href="/" className="text-gray-600 underline text-[12px] mt-10">
         Powered by Cartita
       </Link>
     </section>
