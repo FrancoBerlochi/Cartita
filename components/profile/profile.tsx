@@ -33,7 +33,7 @@ export default function Profile({ name, description }: ProfileProps) {
         alt="pepe"
         width={500}
         height={500}
-        className="max-md:w-[130px] max-md:h-[130px] h-50 w-50 p-4 max-md:p-2 max-md:mt-2 mb-4 rounded-full border-white border-3 shadow-[#aaa] shadow-sm"
+        className="max-md:w-[115px] max-md:h-[115px] h-50 w-50 p-4 max-md:p-2 max-md:mt-2 mb-4 rounded-full border-white border-3 shadow-[#aaa] shadow-sm"
       />
       <h1 className="text-5xl max-md:text-2xl text-black font-semibold mt-2">
         {name}
