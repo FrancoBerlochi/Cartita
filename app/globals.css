@@ -129,9 +129,12 @@
   }
   body {
     @apply bg-background text-foreground;
+    
   }
 }
-
+html{
+  scroll-behavior: smooth;
+}
 .no-scroll{
   overflow: hidden;
 }

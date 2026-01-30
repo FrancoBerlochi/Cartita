@@ -27,18 +27,18 @@ interface ProfileProps {
 
 export default function Profile({ name, description }: ProfileProps) {
   return (
-    <section className="flex items-center w-screen justify-center flex-col h-[90%] max-md:h-full bg-white py-8">
+    <section className="flex items-center w-screen justify-center flex-col h-[90%] max-md:h-full bg-white dark:bg-stone-950 py-8">
       <Image
         src="/next.svg"
         alt="pepe"
         width={500}
         height={500}
-        className="max-md:w-[115px] max-md:h-[115px] h-50 w-50 p-4 max-md:p-2 max-md:mt-2 mb-4 rounded-full border-white border-3 shadow-[#aaa] shadow-sm"
+        className="max-md:w-[115px] max-md:h-[115px] h-50 w-50 p-4 max-md:p-2 max-md:mt-2 mb-4 rounded-full border-white dark:border-background-dark dark:shadow-[#ccc] dark:bg-white border-3 shadow-[#aaa] shadow-sm"
       />
-      <h1 className="text-5xl max-md:text-2xl text-black font-semibold mt-2">
+      <h1 className="text-5xl max-md:text-2xl text-black dark:text-white font-semibold mt-2">
         {name}
       </h1>
-      <h2 className="text-stone-600 w-90 text-center mt-4 max-md:px-2">
+      <h2 className="text-stone-600 w-90 text-center dark:text-stone-400 mt-4 max-md:px-2">
         {description}
       </h2>
       <div className="flex flex-col w-screen justify-center items-center gap-4 mt-6 max-md:mt-8">
